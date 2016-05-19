@@ -1,7 +1,7 @@
 module.exports = function (day, time, geo) {
   return '' +
-    '# ' + day + '\n' +
+    '## ' + day + '\n' +
     '\n' +
     '\n' +
-    '## ' + time
+    '### ' + time
 }
