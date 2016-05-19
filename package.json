@@ -1,0 +1,25 @@
+{
+  "name": "memories",
+  "version": "1.0.0",
+  "description": "time-stamped, geo-cached, markdown journal",
+  "bin": "./bin/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/data-doge/memories.git"
+  },
+  "keywords": [
+    "journal",
+    "diary"
+  ],
+  "author": "data-doge <eugene@enspiral.com> (http://fuckafucka.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/data-doge/memories/issues"
+  },
+  "homepage": "https://github.com/data-doge/memories#readme",
+  "dependencies": {
+    "homedir": "^0.6.0",
+    "inquirer": "^1.0.2",
+    "shelljs": "^0.7.0"
+  }
+}
