@@ -4,15 +4,14 @@ var fs = require('fs')
 var template = require('./template.js')
 var moment = require('moment')
 var isThere = require('is-there')
+var includes = require('lodash.includes')
 
 module.exports = function () {
   var config = require(homedir() + '/.memories.js')
-  var memoriesPath = config.path
-  var editor = config.editor
   var day = moment().format('YYYY-MM-DD')
   var time = moment().format('hh:mm:ss A')
   var fileName = day + '.md'
-  var filePath = memoriesPath + '/' + fileName
+  var filePath = config.path + '/' + fileName
 
   if (isThere(filePath)) {
     fs.appendFileSync(filePath, '\n\n### ' + time)
@@ -20,5 +19,9 @@ module.exports = function () {
     fs.writeFileSync(filePath, template(day, time))
   }
 
-  shell.exec('open -a ' + editor + ' ' + filePath)
+  if (includes(['vim', 'vi', 'emacs', 'nano'], config.editor)) {
+    require('child_process').spawn(config.editor, [filePath], {stdio: 'inherit'})
+  } else {
+    shell.exec('open -a ' + config.editor + ' ' + filePath)
+  }
 }
