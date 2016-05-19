@@ -2,33 +2,37 @@ var inquirer = require('inquirer')
 var fs = require('fs')
 var shell = require('shelljs')
 var homedir = require('homedir')
+var isThere = require('is-there')
 
 module.exports = function () {
   var questions = [
     {
       type: 'input',
-      name: 'memoriesPath',
+      name: 'path',
       message: 'where would you like to store your memories?',
       default: homedir() + '/Documents/memories'
     },
     {
       type: 'input',
-      name: 'memoriesEditor',
+      name: 'editor',
       message: 'and what editor would you like to use to log your memories',
       default: 'atom'
     }
   ]
 
   var onComplete = function (answers) {
-    var initData = 'module.exports = {\n' +
-    '  "memoriesPath" : "' + answers.memoriesPath + '",\n' +
-    '  "memoriesEditor" : "' + answers.memoriesEditor + '"\n' +
+    var configData = 'module.exports = {\n' +
+    '  "path" : "' + answers.path + '",\n' +
+    '  "editor" : "' + answers.editor + '"\n' +
     '}'
 
-    fs.writeFile(homedir() + '/.memories.json', initData, function (err) {
+    if (!isThere(answers.path)) { shell.exec('mkdir ' + answers.path) }
+
+    fs.writeFile(homedir() + '/.memories.js', configData, function (err) {
       if (err) { throw err }
       console.log('initialization complete! run \'memories add\' to log a new memory')
     })
+
   }
 
   inquirer.prompt(questions).then(onComplete)
