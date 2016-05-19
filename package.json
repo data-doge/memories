@@ -1,7 +1,7 @@
 {
   "name": "memories",
   "version": "1.0.0",
-  "description": "time-stamped, geo-cached, markdown journal",
+  "description": "cli for a timestamped markdown journal",
   "bin": "./bin/index.js",
   "repository": {
     "type": "git",
