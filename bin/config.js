@@ -33,7 +33,7 @@ module.exports = function () {
 
     fs.writeFile(homedir() + '/.memories.js', configData, function (err) {
       if (err) { throw err }
-      console.log('initialization complete! run \'memories add\' to log a new memory')
+      console.log('configuration complete! run \'memories add\' to log a new memory')
     })
 
   }
