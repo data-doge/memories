@@ -14,7 +14,7 @@ memories config
 ### usage
 
 ```bash
-$ memories <command>
+memories <command>
 ```
 
 ### commands
