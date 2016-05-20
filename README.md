@@ -6,11 +6,16 @@ cli for a timestamped markdown journal
 
 ```bash
 npm i -g memories
-memories init
+memories config
 ```
 
 ### usage
 
 ```bash
-$ memories add
+$ memories <command>
 ```
+
+### commands
+
+  - `config` : sets preferred editor and path for journal entries
+  - `add` : opens today's journal entry
